@@ -14,6 +14,12 @@ import com.akigrafsoft.knetthreads.konnector.KonnectorDataobject;
 import com.akigrafsoft.knetthreads.konnector.SessionBasedClientKonnector;
 import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
 
+/**
+ * A session based JDBC client Konnector
+ * 
+ * @author kmoyse
+ * 
+ */
 public class JdbcClientKonnector extends SessionBasedClientKonnector {
 
 	String m_dbLogin;
@@ -31,20 +37,20 @@ public class JdbcClientKonnector extends SessionBasedClientKonnector {
 		JdbcClientConfig l_config = (JdbcClientConfig) config;
 
 		m_ds = new MysqlDataSource();
-		m_ds.setServerName(l_config.dbHostName);
-		m_ds.setPort(l_config.dbHostPort);
-		m_ds.setPortNumber(l_config.dbHostPort);
+		m_ds.setServerName(l_config.getDbHostName());
+		m_ds.setPort(l_config.getDbHostPort());
+		m_ds.setPortNumber(l_config.getDbHostPort());
 		try {
-			m_ds.setConnectTimeout(l_config.connectTimeoutMilliseconds);
+			m_ds.setConnectTimeout(l_config.getConnectTimeoutMilliseconds());
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		m_ds.setDatabaseName(l_config.dbName);
+		m_ds.setDatabaseName(l_config.getDbName());
 		// m_ds.setDescription("JdbcClientKonnector");
 
-		m_dbLogin = l_config.dbLogin;
-		m_dbPassword = l_config.dbPassword;
+		m_dbLogin = l_config.getDbLogin();
+		m_dbPassword = l_config.getDbPassword();
 	}
 
 	@Override
