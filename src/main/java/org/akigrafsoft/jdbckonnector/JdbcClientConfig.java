@@ -1,3 +1,9 @@
+/**
+ * Open-source, by AkiGrafSoft.
+ *
+ * $Id:  $
+ *
+ **/
 package org.akigrafsoft.jdbckonnector;
 
 import java.io.Serializable;
@@ -14,8 +20,7 @@ import com.akigrafsoft.knetthreads.konnector.SessionBasedClientKonnectorConfigur
  * @author kmoyse
  * 
  */
-public class JdbcClientConfig extends SessionBasedClientKonnectorConfiguration
-		implements Serializable {
+public class JdbcClientConfig extends SessionBasedClientKonnectorConfiguration implements Serializable {
 
 	/**
 	 * 
@@ -101,8 +106,7 @@ public class JdbcClientConfig extends SessionBasedClientKonnectorConfiguration
 			throw new ExceptionAuditFailed("dbName must be configured");
 		}
 		if (connectTimeoutMilliseconds <= 0) {
-			throw new ExceptionAuditFailed(
-					"connectTimeoutMilliseconds must be > 0");
+			throw new ExceptionAuditFailed("connectTimeoutMilliseconds must be > 0");
 		}
 	}
 }

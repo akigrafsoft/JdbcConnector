@@ -1,3 +1,9 @@
+/**
+ * Open-source, by AkiGrafSoft.
+ *
+ * $Id:  $
+ *
+ **/
 package org.akigrafsoft.jdbckonnector;
 
 import java.sql.Connection;
@@ -31,7 +37,7 @@ public class JdbcClientKonnector extends SessionBasedClientKonnector {
 	public JdbcClientKonnector(String name) throws ExceptionDuplicate {
 		super(name);
 	}
-	
+
 	@Override
 	public Class<? extends KonnectorConfiguration> getConfigurationClass() {
 		return JdbcClientConfig.class;
@@ -60,8 +66,7 @@ public class JdbcClientKonnector extends SessionBasedClientKonnector {
 	}
 
 	@Override
-	protected void createSession(Session session)
-			throws ExceptionCreateSessionFailed {
+	protected void createSession(Session session) throws ExceptionCreateSessionFailed {
 		Connection l_con;
 		try {
 			l_con = m_ds.getConnection(m_dbLogin, m_dbPassword);
@@ -118,8 +123,7 @@ public class JdbcClientKonnector extends SessionBasedClientKonnector {
 			break;
 		case Update:
 			try {
-				int l_result = l_stmt
-						.executeUpdate(l_dataobject.outboundBuffer);
+				int l_result = l_stmt.executeUpdate(l_dataobject.outboundBuffer);
 				l_dataobject.updateResult = l_result;
 				l_con.commit();
 			} catch (SQLTimeoutException ex_timeout) {
@@ -127,8 +131,7 @@ public class JdbcClientKonnector extends SessionBasedClientKonnector {
 					l_stmt.close();
 				} catch (SQLException ex) {
 				}
-				this.notifyNetworkError(l_dataobject, session,
-						ex_timeout.getMessage());
+				this.notifyNetworkError(l_dataobject, session, ex_timeout.getMessage());
 				dieConnection(session);
 				return;
 			} catch (SQLException e) {
